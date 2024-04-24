@@ -3,7 +3,7 @@ import Link from "next/link";
 import ActionButtons from "../ActionButtons";
 
 const EventCard = ({ event }) => {
-    const { name, imageUrl, location, interested_ids, going_ids } = event;
+    const { name, imageUrl, location, interested_ids, going_ids, id } = event;
     return (
         <div className="overflow-hidden rounded-md bg-[#242526]">
             <Image
@@ -15,14 +15,17 @@ const EventCard = ({ event }) => {
             />
 
             <div className="p-3">
-                <Link href="/details/1" className="font-bold text-lg">
+                <Link href={`/details/${id}`} className="font-bold text-lg">
                     {name}
                 </Link>
                 <p className="text-[#9C9C9C] text-sm mt-1">{location}</p>
                 <div className="text-[#737373] text-sm mt-1">
-                    <span>{interested_ids?.length}k Interested</span>
-                    <span>|</span>
-                    <span>{going_ids?.length}K Going</span>
+                    <span>{interested_ids?.length} Interested</span>
+                    <span>
+                        {" "}
+                        <strong>|</strong>{" "}
+                    </span>
+                    <span>{going_ids?.length} Going</span>
                 </div>
                 <ActionButtons />
             </div>
