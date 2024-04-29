@@ -21,13 +21,17 @@ const HeroSection = ({ event }) => {
                         {event?.location}
                     </p>
                     <div className="text-[#737373] text-sm mt-1">
-                        <span>{event?.interested_ids} Interested</span>
-                        <span>|</span>
-                        <span>{event?.going_ids} Going</span>
+                        <span>{event?.interested_ids.length} Interested</span>
+                        <span> | </span>
+                        <span>{event?.going_ids.length} Going</span>
                     </div>
                 </div>
 
-                <ActionButtons fromDetails={true} />
+                <ActionButtons
+                    fromDetails={true}
+                    eventId={event?.id}
+                    interestedUserIds={event?.interested_ids}
+                />
             </div>
         </section>
     );

@@ -1,6 +1,8 @@
 "use server";
 
-const { createUser, findUser } = require("@/db/queries");
+import { revalidatePath } from "next/cache";
+
+const { createUser, findUser, updateEventInterest } = require("@/db/queries");
 const { redirect } = require("next/navigation");
 
 async function registerUser(formData) {
@@ -20,4 +22,14 @@ async function loginUser(formData) {
         throw new Error("Invalid credentials");
     }
 }
-export { loginUser, registerUser };
+
+async function toggleEventInterested(eventId, authId) {
+    try {
+        await updateEventInterest(eventId, authId);
+    } catch (error) {
+        throw error;
+    }
+    revalidatePath("/");
+}
+
+export { loginUser, registerUser, toggleEventInterested };
