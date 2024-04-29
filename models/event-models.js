@@ -31,6 +31,5 @@ const schema = new Schema({
     },
 });
 
-
 export const eventModel =
-    mongoose.models.Events ?? mongoose.model("Events", schema);
+    mongoose.models.events ?? mongoose.model("events", schema);
