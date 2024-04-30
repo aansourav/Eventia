@@ -5,7 +5,7 @@ const PaymentPage = async ({ params: { eventId } }) => {
     const { name } = await getEventById(eventId);
     return (
         <section className="container">
-            <h1 className="text-2xl font-bold ">
+            <h1 className="text-2xl font-bold text-center ">
                 Book Your Seat! Complete your payment for {name}
             </h1>
             <div className="bg-[#242526] p-6 rounded-lg max-w-xl mx-auto my-12">
