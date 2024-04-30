@@ -6,8 +6,18 @@ import {
 } from "@/utils/data-util";
 import mongoose from "mongoose";
 
-async function getAllEvents() {
-    const allEvents = await eventModel.find().lean();
+async function getAllEvents(search) {
+    let allEvents = [];
+    if (search) {
+        const regex = new RegExp(search, "i");
+        allEvents = await eventModel
+            .find({
+                $or: [{ name: regex }, { details: regex }, { location: regex }],
+            })
+            .lean();
+    } else {
+        allEvents = await eventModel.find().lean();
+    }
     return replaceMongoIdInArray(allEvents);
 }
 async function getEventById(id) {
